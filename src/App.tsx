@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import { Switch, Route } from "react-router-dom";
+
+import SignUpPage from "./pages/signup-page/signup-page";
+import LogInPage from "./pages/login-page/logInPage";
+import { Homepage } from "./pages/home-page/homepage";
+import { PrivateRoute } from "./components/private-route/private-route.component";
+import { RoutingConstants } from "./common/routingContstants";
+import { useDispatch } from "react-redux";
+import { auth } from "./firebase";
+import { userActionTypes } from "./redux/types/types";
+import Header from "./components/header/header.component";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const dispatch = useDispatch();
+	useEffect(() => {
+		const unsubscribe = auth.onAuthStateChanged(user => {
+			dispatch({ type: userActionTypes.SET_USER, payload: user });
+		});
+
+		return unsubscribe;
+	}, []);
+
+	return (
+		<div className="App">
+			<Header />
+			<Switch>
+				<PrivateRoute exact path="/" authenticationPath={RoutingConstants.LOGIN} component={Homepage} />
+				<Route path="/signup" component={SignUpPage} />
+				<Route path="/login" component={LogInPage} />
+			</Switch>
+		</div>
+	);
 }
 
 export default App;
