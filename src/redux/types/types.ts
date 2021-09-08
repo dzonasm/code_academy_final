@@ -1,10 +1,12 @@
+import firebase from 'firebase/app';
+
 export interface coordinateDot {
 	id: string;
 	coordx: number;
 	coordy: number;
 }
 export interface userReducerState {
-	currentUser: any;
+	currentUser: firebase.User | null;
 }
 
 //newItemType
@@ -22,7 +24,7 @@ export enum userActionTypes {
 
 export type userReducerAction = {
 	type: typeof userActionTypes.SET_USER;
-	payload: any;
+	payload: firebase.User;
 };
 
 export type coordinateReducerAction = {

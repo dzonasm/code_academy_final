@@ -48,7 +48,7 @@ const Header = () => {
 					</Nav>
 				) : null}
 				<Navbar.Toggle />
-				{user ? (
+				{user  ? (
 					<Navbar.Collapse className="justify-content-end">
 						<Navbar.Text>Signed in as: {user.email}</Navbar.Text>
 						<Button className="btn btn-primary ms-3" onClick={handleLogout}>

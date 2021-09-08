@@ -6,6 +6,7 @@ import { userActionTypes } from "../../redux/types/types";
 import "../../common/common-styles.styles.scss";
 import { Product } from "../../components/product/product";
 import { ProductGrid } from "../../components/product-grid/product-grid";
+import {ProductDetails} from '../../components/product-details/product-details.component'
 export const Homepage = () => {
   const dispatch = useDispatch();
 
@@ -18,7 +19,7 @@ export const Homepage = () => {
   }, []);
 
   const desc =
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae perspiciatis vitae impedit adipisci veritatis delectus, deleniti dolorum recusandae, sed quia beatae totam animi nisi assumenda accusantium quos repellendus! Labore eos beatae commodi enim provident assumenda exercitationem modi officiis reprehenderit excepturi aut ratione a molestias facere cupiditate nostrum, incidunt soluta molestiae? Minus nulla, enim tenetur nostrum vitae distinctio nemo perferendis doloremque hic aliquid qui, et est magnam quia obcaecati quos voluptatum accusamus aspernatur modi. Temporibus consequuntur dicta in ipsum praesentium nostrum sunt quis, suscipit reprehenderit soluta quam porro inventore enim. Modi veniam unde ipsum, accusamus ullam, eligendi cumque laboriosam praesentium iusto aliquam iste illo cupiditate laudantium repellendus dolores ipsa odio! Dolores deleniti rem, minima soluta harum beatae adipisci eaque maxime iure nam obcaecati itaque maiores sit natus quam voluptatum aliquid quasi asperiores quaerat consequuntur molestias incidunt dolorum laudantium eveniet. Perferendis eos alias ullam consequatur temporibus esse minus incidunt quia, numquam debitis.";
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae perspiciatis vitae impedit adipisci veritatis delectus, deleniti dolorum recusandae, sed quia beatae totam animi nisi assumenda accusantium quos repellendus! Labore eos beatae commodi enim provident assumenda exercitationem modi officiis reprehenderit excepturi aut ratione a molestias facere cupiditate nostrum, incidunt soluta molestiae? Minus nulla, enim tenetur nostrum vitae distinctio nemo perferendis doloremque hic aliquid qui, et est magnam quia obcaecati quos voluptatum accusamus aspernatur modi. Temporibus.";
 
   return (
     <div className=" h-100 container">
@@ -58,6 +59,12 @@ export const Homepage = () => {
       </div>
 
 	  </ProductGrid>
+	  <ProductDetails userName={"hey"}
+          id={"123"}
+          description={desc}
+          title={"wasuup"}
+          price={"3.88"}
+          photos={["https://slp-statics.astockcdn.net/static_assets/staging/21fall/EMEA/photos/curated-collections/Card-1.jpg?width=580", 'https://i.pinimg.com/236x/33/72/7d/33727d49449f596b3416cd4d5a314ad9--memes.jpg', 'https://cdn.theatlantic.com/media/mt/science/cat_caviar.jpg']}/>
     </div>
   );
 };

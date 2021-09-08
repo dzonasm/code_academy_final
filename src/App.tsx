@@ -18,7 +18,7 @@ import Header from "./components/header/header.component";
 function App() {
 	const dispatch = useDispatch();
 	useEffect(() => {
-		const unsubscribe = auth.onAuthStateChanged(user => {
+		const unsubscribe = auth.onAuthStateChanged((user) => {
 			dispatch({ type: userActionTypes.SET_USER, payload: user });
 		});
 
