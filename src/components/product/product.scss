@@ -1,0 +1,13 @@
+.product{
+    &__favorite {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 0.4rem;
+        transition: all 0.4s ease;
+    }
+
+    &_favorite:hover{
+        transform: scale(1.1);
+    }
+}

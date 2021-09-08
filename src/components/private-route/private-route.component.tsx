@@ -9,5 +9,9 @@ export type ProtectedRouteProps = {
 export const PrivateRoute = ({ authenticationPath, ...routeProps }: ProtectedRouteProps) => {
 	const currentUser = useSelector(selectCurrentUser);
 
-	return currentUser?.email ? <Route {...routeProps} /> : <Redirect to={authenticationPath} />;
+	return currentUser?.email ?
+	<Route {...routeProps} /> 
+	:
+	<Route {...routeProps} /> 
+	//  <Redirect to={authenticationPath} />;
 };
