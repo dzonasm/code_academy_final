@@ -19,7 +19,7 @@ export const Homepage = () => {
   }, []);
 
   const desc =
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae perspiciatis vitae impedit adipisci veritatis delectus, deleniti dolorum recusandae, sed quia beatae totam animi nisi assumenda accusantium quos repellendus! Labore eos beatae commodi enim provident assumenda exercitationem modi officiis reprehenderit excepturi aut ratione a molestias facere cupiditate nostrum, incidunt soluta molestiae? Minus nulla, enim tenetur nostrum vitae distinctio nemo perferendis doloremque hic aliquid qui, et est magnam quia obcaecati quos voluptatum accusamus aspernatur modi. Temporibus.";
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae perspiciatis vitae impedit adipisci veritatis delectus, deleniti dolorum recusandae, sed quia beatae totam animi nisi assumenda accusantium.";
 
   return (
     <div className=" h-100 container">
