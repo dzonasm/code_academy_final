@@ -1,0 +1,15 @@
+.shopping-cart-items-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 50px;
+  justify-content: space-around;
+}
+
+.cart-empty-text {
+  font-family: "Poppins", sans-serif;
+  font-size: large;
+  display: block;
+  text-align: center;
+  margin-top: 70px;
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Card, Carousel } from "react-bootstrap";
-import { IProductProps } from "../../common/interfaces/product-interface";
-import { uuid } from "uuidv4";
+import { IProduct } from "../../common/interfaces/product-interface";
+import { v4 } from "uuid";
 import './product-details.scss'
 
 export const ProductDetails = ({
@@ -11,16 +11,16 @@ export const ProductDetails = ({
   price,
   description,
   id,
-}: IProductProps): JSX.Element => {
+}: IProduct): JSX.Element => {
   const pictures: JSX.Element[] = photos.map((photo: string) => {
     return (
-      <Carousel.Item key={uuid()}>
+      <Carousel.Item key={v4()}>
         <img className="d-block w-100 carousel__image" src={photo} alt={title} />
       </Carousel.Item>
     );
   });
   return (
-    <div>
+    <div className="product-details__container">
       <Carousel>{pictures}</Carousel>
       <Card className="text-center">
         <Card.Header>{price} $</Card.Header>

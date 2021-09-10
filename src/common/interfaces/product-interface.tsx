@@ -1,5 +1,5 @@
 
-export interface IProductProps {
+export interface IProduct {
     price: string | number;
     photos: string[];
     description: string;

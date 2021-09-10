@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 import { auth } from "./firebase";
 import { userActionTypes } from "./redux/types/types";
 import Header from "./components/header/header.component";
+import { CheckoutPage } from "./pages/checkout-page/checkout-page";
 
 function App() {
 	const dispatch = useDispatch();
@@ -32,6 +33,7 @@ function App() {
 				<PrivateRoute exact path="/" authenticationPath={RoutingConstants.LOGIN} component={Homepage} />
 				<Route path="/signup" component={SignUpPage} />
 				<Route path="/login" component={LogInPage} />
+				<Route path="/checkout" component={CheckoutPage} />
 			</Switch>
 		</div>
 	);

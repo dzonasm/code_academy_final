@@ -1,0 +1,12 @@
+.remove-button {
+  font-size: 12px;
+  text-align: center;
+  background: white;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.remove-button:hover {
+  background-color: rgba(170, 170, 170, 0.1);
+}

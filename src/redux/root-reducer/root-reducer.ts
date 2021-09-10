@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
 
-import coordinateReducer from "../coordinates/coordinate-reducer";
+import shoppingCartReducer from "../shopping-cart/shopping-cart.reducer";
 import userReducer from "../userReducer/user-reducer";
 
 const rootReducer = combineReducers({
-	coordinates: coordinateReducer,
 	user: userReducer,
+	shoppingCart: shoppingCartReducer
 });
 
 export default rootReducer;

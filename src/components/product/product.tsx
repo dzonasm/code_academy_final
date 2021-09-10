@@ -1,8 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { MouseEventHandler } from "react";
 import { Button, Card } from "react-bootstrap";
-import { IProductProps } from "../../common/interfaces/product-interface";
+import { IProduct } from "../../common/interfaces/product-interface";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { reducerActions } from "../../redux/types/types";
+import { useDispatch } from "react-redux";
 
 export const Product = ({
   price,
@@ -11,9 +13,12 @@ export const Product = ({
   title,
   id,
   userName,
-}: IProductProps): JSX.Element => {
-  const logId = (id: string): void => {
+}: IProduct): JSX.Element => {
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
     console.log(id);
+    dispatch({type: reducerActions.ADD_ITEM_TO_CART, payload: {title, price, description, photos, id, userName} })
   };
 
   return (
@@ -35,7 +40,7 @@ export const Product = ({
         >
           <FontAwesomeIcon icon={faHeart} />
         </Button>
-        <Button onClick={() => logId(id)} variant="success">
+        <Button onClick={handleClick} variant="success">
           Add to cart
         </Button>
       </Card.Body>

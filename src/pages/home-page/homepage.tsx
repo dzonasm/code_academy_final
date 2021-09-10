@@ -34,7 +34,7 @@ export const Homepage = () => {
           description={desc}
           title={"wasuup"}
           price={"3.88"}
-          photos={["hello"]}
+          photos={["https://st.depositphotos.com/2212674/3353/i/600/depositphotos_33530773-stock-photo-work-is-getting-more-and.jpg"]}
         />
       </div>
       <div className=" d-flex justify-content-center">
@@ -44,7 +44,7 @@ export const Homepage = () => {
           description={desc}
           title={"wasuup"}
           price={"3.88"}
-          photos={["hello"]}
+          photos={["https://st.depositphotos.com/2212674/3353/i/600/depositphotos_33530773-stock-photo-work-is-getting-more-and.jpg"]}
         />
       </div>
       <div className=" d-flex justify-content-center">
@@ -54,7 +54,7 @@ export const Homepage = () => {
           description={desc}
           title={"wasuup"}
           price={"3.88"}
-          photos={["hello"]}
+          photos={["https://st.depositphotos.com/2212674/3353/i/600/depositphotos_33530773-stock-photo-work-is-getting-more-and.jpg"]}
         />
       </div>
 

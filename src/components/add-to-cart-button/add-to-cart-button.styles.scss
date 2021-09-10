@@ -1,0 +1,15 @@
+.add-to-cart-button {
+  font-size: 12px;
+  text-align: center;
+  background: rgba(170, 170, 170, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+
+  width: 160px;
+}
+
+.add-to-cart-button:hover {
+  background-color: rgba(170, 170, 170, 0.7);
+}
