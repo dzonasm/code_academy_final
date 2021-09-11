@@ -5,6 +5,7 @@ import { IProduct } from "../../common/interfaces/product-interface";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { reducerActions } from "../../redux/types/types";
 import { useDispatch } from "react-redux";
+import { Link, withRouter } from 'react-router-dom'
 
 export const Product = ({
   price,
@@ -16,18 +17,19 @@ export const Product = ({
 }: IProduct): JSX.Element => {
   const dispatch = useDispatch();
 
-  const handleClick = () => {
-    console.log(id);
+  const handleAddToCart = () => {
     dispatch({type: reducerActions.ADD_ITEM_TO_CART, payload: {title, price, description, photos, id, userName} })
   };
 
   return (
     <Card className="m-2 m-sm-1" style={{ width: "18rem" }}>
+      <Link to='/single-product'>
       <Card.Img
         className="p-2"
         variant="top"
-        src="https://slp-statics.astockcdn.net/static_assets/staging/21fall/EMEA/photos/curated-collections/Card-1.jpg?width=580"
+        src={photos[0]}
       />
+      </Link>
       <Card.Body>
         <Card.Title>
           {title}
@@ -40,10 +42,11 @@ export const Product = ({
         >
           <FontAwesomeIcon icon={faHeart} />
         </Button>
-        <Button onClick={handleClick} variant="success">
+        <Button onClick={handleAddToCart} variant="success">
           Add to cart
         </Button>
       </Card.Body>
     </Card>
   );
 };
+

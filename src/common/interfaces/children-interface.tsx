@@ -1,3 +1,3 @@
 export interface IChildrenProps {
-    children: JSX.Element[]
+    children: JSX.Element | JSX.Element[];
 };

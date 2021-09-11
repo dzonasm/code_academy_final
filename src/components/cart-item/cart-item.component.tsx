@@ -23,7 +23,7 @@ const CartItem: React.FC<ICartProductProps> = ({ product }) => {
     dispatch({ type: reducerActions.ADD_ITEM_TO_CART, payload: product });
   };
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card className="m-2" style={{ width: "18rem" }}>
       <Card.Img variant="top" src={photos[0]} alt={title} />
       <Card.Body>
         <Card.Title>{title}</Card.Title>

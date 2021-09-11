@@ -15,6 +15,7 @@ import { auth } from "./firebase";
 import { userActionTypes } from "./redux/types/types";
 import Header from "./components/header/header.component";
 import { CheckoutPage } from "./pages/checkout-page/checkout-page";
+import { SingleProductPage } from "./pages/single-product/single-product.page";
 
 function App() {
 	const dispatch = useDispatch();
@@ -34,6 +35,7 @@ function App() {
 				<Route path="/signup" component={SignUpPage} />
 				<Route path="/login" component={LogInPage} />
 				<Route path="/checkout" component={CheckoutPage} />
+				<Route path="/single-product" component={SingleProductPage} />
 			</Switch>
 		</div>
 	);

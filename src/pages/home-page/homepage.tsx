@@ -6,7 +6,7 @@ import { userActionTypes } from "../../redux/types/types";
 import "../../common/common-styles.styles.scss";
 import { Product } from "../../components/product/product";
 import { ProductGrid } from "../../components/product-grid/product-grid";
-import {ProductDetails} from '../../components/product-details/product-details.component'
+import { Container } from "react-bootstrap";
 export const Homepage = () => {
   const dispatch = useDispatch();
 
@@ -21,11 +21,9 @@ export const Homepage = () => {
   const desc =
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae perspiciatis vitae impedit adipisci veritatis delectus, deleniti dolorum recusandae, sed quia beatae totam animi nisi assumenda accusantium.";
 
+  
   return (
-    <div className=" h-100 container">
-      <div className="row">
-        <h1>Drawing perspective</h1>
-      </div>
+    <Container >
 	  <ProductGrid>
       <div className=" d-flex justify-content-center">
         <Product
@@ -33,38 +31,33 @@ export const Homepage = () => {
           id={"123"}
           description={desc}
           title={"wasuup"}
-          price={"3.88"}
+          price={"4.99"}
           photos={["https://st.depositphotos.com/2212674/3353/i/600/depositphotos_33530773-stock-photo-work-is-getting-more-and.jpg"]}
         />
       </div>
       <div className=" d-flex justify-content-center">
         <Product
           userName={"hey"}
-          id={"123"}
+          id={"345"}
           description={desc}
           title={"wasuup"}
           price={"3.88"}
-          photos={["https://st.depositphotos.com/2212674/3353/i/600/depositphotos_33530773-stock-photo-work-is-getting-more-and.jpg"]}
+          photos={["https://www.istockphoto.com/resources/images/PhotoFTLP/1035146258.jpg"]}
         />
       </div>
       <div className=" d-flex justify-content-center">
         <Product
           userName={"hey"}
-          id={"123"}
+          id={"657"}
           description={desc}
           title={"wasuup"}
-          price={"3.88"}
-          photos={["https://st.depositphotos.com/2212674/3353/i/600/depositphotos_33530773-stock-photo-work-is-getting-more-and.jpg"]}
+          price={"12"}
+          photos={["https://ichef.bbci.co.uk/news/976/cpsprodpb/16646/production/_116681719_whatsubject.jpg"]}
         />
       </div>
 
 	  </ProductGrid>
-	  <ProductDetails userName={"hey"}
-          id={"123"}
-          description={desc}
-          title={"wasuup"}
-          price={"3.88"}
-          photos={["https://slp-statics.astockcdn.net/static_assets/staging/21fall/EMEA/photos/curated-collections/Card-1.jpg?width=580", 'https://i.pinimg.com/236x/33/72/7d/33727d49449f596b3416cd4d5a314ad9--memes.jpg', 'https://cdn.theatlantic.com/media/mt/science/cat_caviar.jpg']}/>
-    </div>
+	  
+    </Container>
   );
 };
