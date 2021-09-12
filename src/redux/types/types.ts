@@ -1,4 +1,5 @@
 import firebase from 'firebase/app';
+import { UserDTO } from '../../common/DTO/user.dto';
 import { ICartProduct } from '../../common/interfaces/cart-product';
 import {IProduct} from '../../common/interfaces/product-interface'
 
@@ -6,7 +7,7 @@ export interface IShoppingCartState {
     products: ICartProduct[];
 }
 export interface userReducerState {
-	currentUser: firebase.User | null;
+	currentUser:  UserDTO | null;
 }
 
 
@@ -16,7 +17,7 @@ export enum userActionTypes {
 
 export type userReducerAction = {
 	type: typeof userActionTypes.SET_USER;
-	payload: firebase.User;
+	payload: UserDTO;
 };
 
 //sorting reducer state type

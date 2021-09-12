@@ -3,6 +3,7 @@ import { Spinner, Form, Card, Button, Alert } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import "./signup.styles.scss";
 import { auth } from "../../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { RoutingConstants } from "../../common/routingContstants";
 
 export default function SignUpComponent() {
@@ -15,7 +16,7 @@ export default function SignUpComponent() {
 	const passwordConfirmRef = useRef<HTMLInputElement>(null);
 
 	const signup = (email: string, password: string) => {
-		return auth.createUserWithEmailAndPassword(email, password);
+		return createUserWithEmailAndPassword(auth, email, password);
 	};
 
 	const handleFormSubmit = async (e: React.FormEvent): Promise<any> => {

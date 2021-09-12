@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Spinner, Form, Card, Button, Alert } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { auth } from "../../firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { RoutingConstants } from "../../common/routingContstants";
 
 export default function LoginComponent() {
@@ -14,7 +15,7 @@ export default function LoginComponent() {
 	const passwordRef = useRef<HTMLInputElement>(null);
 
 	const login = (email: string, password: string) => {
-		return auth.signInWithEmailAndPassword(email, password);
+		return signInWithEmailAndPassword(auth, email, password);
 	};
 
 	const handleFormSubmit = async (e: React.FormEvent): Promise<any> => {
