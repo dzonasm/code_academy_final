@@ -1,11 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { MouseEventHandler } from "react";
 import { Button, Card } from "react-bootstrap";
 import { IProduct } from "../../common/interfaces/product-interface";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { reducerActions } from "../../redux/types/types";
 import { useDispatch } from "react-redux";
-import { Link, withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { RoutingConstants } from "../../common/routingContstants";
 
 export const Product = ({
@@ -14,12 +13,11 @@ export const Product = ({
   description,
   title,
   id,
-  userName,
 }: IProduct): JSX.Element => {
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
-    dispatch({type: reducerActions.ADD_ITEM_TO_CART, payload: {title, price, description, photos, id, userName} })
+    dispatch({type: reducerActions.ADD_ITEM_TO_CART, payload: {title, price, description, photos, id} })
   };
 
   return (
@@ -34,7 +32,7 @@ export const Product = ({
       <Card.Body>
         <Card.Title>
           {title}
-          <p>{price}</p>
+          <p>{price} $</p>
         </Card.Title>
         <Card.Text className="truncate">{description}</Card.Text>
         <Button

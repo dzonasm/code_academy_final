@@ -5,5 +5,5 @@ export interface IProduct {
     description: string;
     title: string;
     id: string;
-    userName?: string;
+    userId?: string;
 }

@@ -16,7 +16,7 @@ const productsReducer = (
     case reducerActions.SET_PRODUCTS:
       return {
         ...state,
-        allProducts: [...state.allProducts, ...action.payload],
+        allProducts: [...action.payload],
       };
     case reducerActions.REMOVE_PRODUCT_FROM_PRODUCTS:
       return {

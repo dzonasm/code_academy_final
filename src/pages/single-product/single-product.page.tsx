@@ -8,7 +8,6 @@ export const SingleProductPage = () => {
   return (
     <Container>
       <ProductDetails
-        userName={"hey"}
         id={"123"}
         description={desc}
         title={"wasuup"}

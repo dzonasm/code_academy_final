@@ -70,7 +70,7 @@ const UploadPage: React.SFC<RouteComponentProps> = ({history}) => {
       title: titleRef.current?.value,
       price: priceRef.current?.value,
       description: descriptionRef.current?.value,
-      photos: imageUrlInputs,
+      photos: imageUrlInputs.map(url => url.imageUrl),
       userId,
     };
     try {

@@ -6,11 +6,9 @@ import './product-details.scss'
 
 export const ProductDetails = ({
   title,
-  userName,
   photos,
   price,
   description,
-  id,
 }: IProduct): JSX.Element => {
   const pictures: JSX.Element[] = photos.map((photo: string) => {
     return (
