@@ -16,7 +16,7 @@ import { userActionTypes } from "./redux/types/types";
 import Header from "./components/header/header.component";
 import { CheckoutPage } from "./pages/checkout-page/checkout-page";
 import { SingleProductPage } from "./pages/single-product/single-product.page";
-import { UploadPage } from "./pages/upload-page/upload-page";
+import UploadPage  from "./pages/upload-page/upload-page";
 
 function App() {
 	const dispatch = useDispatch();

@@ -3,30 +3,39 @@ import { Button, Container, FloatingLabel, Form } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { db } from "../../firebase";
 import { selectCurrentUser } from "../../redux/selectors/selectors";
+import { collection, addDoc } from "firebase/firestore";
+import { withRouter } from "react-router";
+import { RouteComponentProps } from 'react-router-dom';
+import { RoutingConstants } from "../../common/routingContstants";
 
 
 interface IImageUrlInputObj {
   imageUrl: string;
 }
 
-export const UploadPage = () => {
+const UploadPage: React.SFC<RouteComponentProps> = ({history}) => {
   const [imageUrlInputs, setImageUrlInputs] = useState<IImageUrlInputObj[]>([
     { imageUrl: "" },
   ]);
 
-  const titleRef = useRef<HTMLInputElement>(null)
-  const priceRef = useRef<HTMLInputElement>(null)
-  const descriptionRef = useRef<HTMLTextAreaElement>(null)
+  const titleRef = useRef<HTMLInputElement>(null);
+  const priceRef = useRef<HTMLInputElement>(null);
+  const descriptionRef = useRef<HTMLTextAreaElement>(null);
 
-  const userId: string | undefined = useSelector(selectCurrentUser)?.uid
+  const userId: string | undefined = useSelector(selectCurrentUser)?.uid;
 
-  const inputs = imageUrlInputs.map((input, idx) => {
+  const inputs = imageUrlInputs.map((_input, idx) => {
     return (
-      <div>
-        <Form.Floating key={idx} className="mb-3">
+      <div key={idx}>
+        <Form.Floating className="mb-3">
           <Form.Control
             id="floatingInputCustom"
-            onChange={(e)=>handleUlrInputChange(e as React.ChangeEvent<HTMLInputElement>, idx)}
+            onChange={(e) =>
+              handleUlrInputChange(
+                e as React.ChangeEvent<HTMLInputElement>,
+                idx
+              )
+            }
             type="url"
             placeholder="Image Url"
             required
@@ -39,10 +48,13 @@ export const UploadPage = () => {
     );
   });
 
-  const handleUlrInputChange = (event: React.ChangeEvent<HTMLInputElement>,idx: number): void =>{
-      let values:IImageUrlInputObj[] = [...imageUrlInputs];
-        values[idx].imageUrl = event.target.value
-  }
+  const handleUlrInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    idx: number
+  ): void => {
+    let values: IImageUrlInputObj[] = [...imageUrlInputs];
+    values[idx].imageUrl = event.target.value;
+  };
 
   const handleAddField = () => {
     setImageUrlInputs([...imageUrlInputs, { imageUrl: "" }]);
@@ -52,34 +64,22 @@ export const UploadPage = () => {
     setImageUrlInputs(imageUrlInputs.splice(idx, 1));
   };
 
-
-// Add a new document in collection "cities"
-// await setDoc(doc(db, "cities", "LA"), {
-//   name: "Los Angeles",
-//   state: "CA",
-//   country: "USA"
-// });
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log({
-        title: titleRef.current?.value,
-        price: priceRef.current?.value,
-        description: descriptionRef.current?.value,
-        photos: imageUrlInputs,
-        userId
-    });
-    // db.collection("products").add({
-    //     first: "Ada",
-    //     last: "Lovelace",
-    //     born: 1815
-    // })
-    // .then((docRef) => {
-    //     console.log("Document written with ID: ", docRef.id);
-    // })
-    // .catch((error) => {
-    //     console.error("Error adding document: ", error);
-    // });
+    const data = {
+      title: titleRef.current?.value,
+      price: priceRef.current?.value,
+      description: descriptionRef.current?.value,
+      photos: imageUrlInputs,
+      userId,
+    };
+    try {
+      const docRef = await addDoc(collection(db, "products"), data);
+      console.log("Document written with ID: ", docRef.id);
+      history.push(RoutingConstants.HOME)
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
   };
   return (
     <Container>
@@ -126,3 +126,5 @@ export const UploadPage = () => {
     </Container>
   );
 };
+
+export default withRouter(UploadPage)
