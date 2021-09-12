@@ -6,6 +6,7 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { reducerActions } from "../../redux/types/types";
 import { useDispatch } from "react-redux";
 import { Link, withRouter } from 'react-router-dom'
+import { RoutingConstants } from "../../common/routingContstants";
 
 export const Product = ({
   price,
@@ -23,7 +24,7 @@ export const Product = ({
 
   return (
     <Card className="m-2 m-sm-1" style={{ width: "18rem" }}>
-      <Link to='/single-product'>
+      <Link to={RoutingConstants.SINGLE_PRODUCT}>
       <Card.Img
         className="p-2"
         variant="top"

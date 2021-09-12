@@ -16,6 +16,7 @@ import { userActionTypes } from "./redux/types/types";
 import Header from "./components/header/header.component";
 import { CheckoutPage } from "./pages/checkout-page/checkout-page";
 import { SingleProductPage } from "./pages/single-product/single-product.page";
+import { UploadPage } from "./pages/upload-page/upload-page";
 
 function App() {
 	const dispatch = useDispatch();
@@ -32,10 +33,11 @@ function App() {
 			<Header />
 			<Switch>
 				<PrivateRoute exact path="/" authenticationPath={RoutingConstants.LOGIN} component={Homepage} />
-				<Route path="/signup" component={SignUpPage} />
-				<Route path="/login" component={LogInPage} />
-				<Route path="/checkout" component={CheckoutPage} />
-				<Route path="/single-product" component={SingleProductPage} />
+				<Route path={RoutingConstants.SIGNUP} component={SignUpPage} />
+				<Route path={RoutingConstants.LOGIN} component={LogInPage} />
+				<Route path={RoutingConstants.CHECKOUT} component={CheckoutPage} />
+				<Route path={RoutingConstants.UPLOAD} component={UploadPage} />
+				<Route path={RoutingConstants.SINGLE_PRODUCT} component={SingleProductPage} />
 			</Switch>
 		</div>
 	);

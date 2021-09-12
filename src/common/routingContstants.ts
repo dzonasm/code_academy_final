@@ -5,4 +5,5 @@ export enum RoutingConstants {
 	FAVORITES = "/favorites",
 	UPLOAD = "/upload",
 	CHECKOUT = "/checkout",
+	SINGLE_PRODUCT = '/single-product',
 }

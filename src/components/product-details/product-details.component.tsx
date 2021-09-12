@@ -20,7 +20,7 @@ export const ProductDetails = ({
     );
   });
   return (
-    <div className="product-details__container">
+    <div className="product-details__container p-4">
       <Carousel>{pictures}</Carousel>
       <Card className="text-center">
         <Card.Header>{price} $</Card.Header>
