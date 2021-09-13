@@ -8,6 +8,9 @@ export interface IShoppingCartState {
 export interface IProductsReducerState {
   allProducts: IProduct[];
 }
+export interface IFavoritesReducer {
+  favorites: IProduct[];
+}
 export interface userReducerState {
   currentUser: UserDTO | null;
 }
@@ -21,10 +24,6 @@ export type userReducerAction = {
   payload: UserDTO;
 };
 
-//sorting reducer state type
-export interface sortingReducerState {
-  sort: string;
-}
 
 //add to cart button props
 export interface addToCartButtonProps {
@@ -53,29 +52,35 @@ export enum reducerActions {
   SORT_BY_PRICE = "SORT_BY_PRICE",
   SET_PRODUCTS = "SET_PRODUCTS",
   REMOVE_PRODUCT_FROM_PRODUCTS = "REMOVE_PRODUCT_FROM_PRODUCTS",
+  SELECT_PRODUCT = "SELECT_PRODUCT",
+  ADD_FAVORITE = 'ADD_FAVORITE',
+  REMOVE_FAVORITE = 'REMOVE_FAVORITE',
+  CHECKOUT= 'CHECKOUT'
 }
 
-//action type for sorting reducer
-
-export type sortingReducerAction = {
-  type: typeof reducerActions.SORT_BY_PRICE;
-  payload: string;
-};
 
 // action type in shopping cart
 export type shoppingCartAction = {
   type:
     | typeof reducerActions.ADD_ITEM_TO_CART
     | typeof reducerActions.REMOVE_ITEM_FROM_CART
-    | typeof reducerActions.REMOVE_SINGLE_ITEM_FROM_CART;
+    | typeof reducerActions.REMOVE_SINGLE_ITEM_FROM_CART
+    | typeof reducerActions.CHECKOUT;
   payload: ICartProduct;
 };
 
 export type productsAction = {
     type: 
     | typeof reducerActions.SET_PRODUCTS
-    | typeof reducerActions.REMOVE_PRODUCT_FROM_PRODUCTS;
+    | typeof reducerActions.REMOVE_PRODUCT_FROM_PRODUCTS
+    | typeof reducerActions.SELECT_PRODUCT
     payload: IProduct[];
+}
+export type favoritesAction = {
+    type: 
+    | typeof reducerActions.ADD_FAVORITE
+    | typeof reducerActions.REMOVE_FAVORITE
+    payload: IProduct;
 }
 
 //action type for the adds reducer
@@ -84,8 +89,4 @@ export type addsReducerAction = {
   payload: IProduct;
 };
 
-//action type for widget reducer
-export type widgetReducerAction = {
-  type: typeof reducerActions.TOGGLE_CART_WIDGET_VISIBLE;
-  payload: boolean;
-};
+

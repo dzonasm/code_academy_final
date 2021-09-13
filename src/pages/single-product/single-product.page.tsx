@@ -1,23 +1,47 @@
+import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
-import { ProductDetails } from "../../components/product-details/product-details.component";
+import { RouteChildrenProps } from "react-router";
+import { doc, getDoc } from "firebase/firestore";
+import  ProductDetails from "../../components/product-details/product-details.component";
+import { db } from "../../firebase";
+import { IProduct } from "../../common/interfaces/product-interface";
 
-export const SingleProductPage = () => {
-  const desc =
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae perspiciatis vitae impedit adipisci veritatis delectus, deleniti dolorum recusandae, sed quia beatae totam animi nisi assumenda accusantium.";
+
+interface MatchParams {
+  id: string;
+}
+interface IProps extends RouteChildrenProps<MatchParams> {}
+
+export const SingleProductPage: React.SFC<IProps> = ({match}) => {
+
+  const [product, setProduct] = useState<IProduct | null>(null)
+
+  const id: string = match?.params.id || ""
+
+  const docRef = doc(db, "products", id);
+  
+  useEffect(()=>{
+    (async ()=> {
+      const docSnap = await getDoc(docRef);
+      setProduct(docSnap.data() as IProduct)
+    })()
+  },[])
+
+  console.log(match?.params.id)
 
   return (
     <Container>
+      {product ? 
       <ProductDetails
-        id={"123"}
-        description={desc}
-        title={"wasuup"}
-        price={"3.88"}
-        photos={[
-          "https://slp-statics.astockcdn.net/static_assets/staging/21fall/EMEA/photos/curated-collections/Card-1.jpg?width=580",
-          "https://i.pinimg.com/236x/33/72/7d/33727d49449f596b3416cd4d5a314ad9--memes.jpg",
-          "https://cdn.theatlantic.com/media/mt/science/cat_caviar.jpg",
-        ]}
+      userId={product.userId}
+        id={id}
+        description={product.description}
+        title={product.title}
+        price={product.price}
+        photos={product.photos}
       />
+      : "Loading, m8"
+    }
     </Container>
   );
 };

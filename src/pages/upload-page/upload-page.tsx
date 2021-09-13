@@ -1,22 +1,25 @@
 import React, { FormEvent, useRef, useState } from "react";
 import { Button, Container, FloatingLabel, Form } from "react-bootstrap";
-import { useSelector } from "react-redux";
-import { db } from "../../firebase";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/selectors/selectors";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 import { withRouter } from "react-router";
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps } from "react-router-dom";
 import { RoutingConstants } from "../../common/routingContstants";
-
+import { IProduct } from "../../common/interfaces/product-interface";
+import { db } from "../../firebase";
+import { reducerActions } from "../../redux/types/types";
 
 interface IImageUrlInputObj {
   imageUrl: string;
 }
 
-const UploadPage: React.SFC<RouteComponentProps> = ({history}) => {
+const UploadPage: React.SFC<RouteComponentProps> = ({ history }) => {
   const [imageUrlInputs, setImageUrlInputs] = useState<IImageUrlInputObj[]>([
     { imageUrl: "" },
   ]);
+
+  const dispatch = useDispatch();
 
   const titleRef = useRef<HTMLInputElement>(null);
   const priceRef = useRef<HTMLInputElement>(null);
@@ -64,19 +67,32 @@ const UploadPage: React.SFC<RouteComponentProps> = ({history}) => {
     setImageUrlInputs(imageUrlInputs.splice(idx, 1));
   };
 
+  const getProducts = async () => {
+    const products: IProduct[] = [];
+    const querySnapshot = await getDocs(collection(db, "products"));
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      data.id = doc.id;
+      products.push(data as IProduct);
+    });
+    console.log(products);
+    dispatch({ type: reducerActions.SET_PRODUCTS, payload: products });
+  };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = {
       title: titleRef.current?.value,
       price: priceRef.current?.value,
       description: descriptionRef.current?.value,
-      photos: imageUrlInputs.map(url => url.imageUrl),
+      photos: imageUrlInputs.map((url) => url.imageUrl),
       userId,
     };
     try {
       const docRef = await addDoc(collection(db, "products"), data);
       console.log("Document written with ID: ", docRef.id);
-      history.push(RoutingConstants.HOME)
+      getProducts();
+      history.push(RoutingConstants.HOME);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -127,4 +143,4 @@ const UploadPage: React.SFC<RouteComponentProps> = ({history}) => {
   );
 };
 
-export default withRouter(UploadPage)
+export default withRouter(UploadPage);

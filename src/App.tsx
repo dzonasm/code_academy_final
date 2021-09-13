@@ -19,6 +19,7 @@ import { SingleProductPage } from "./pages/single-product/single-product.page";
 import UploadPage from "./pages/upload-page/upload-page";
 import { collection, getDocs } from "firebase/firestore";
 import { IProduct } from "./common/interfaces/product-interface";
+import { FavoritesPage } from "./pages/favorites-page/favorites-page";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,7 +36,9 @@ function App() {
 		const products: IProduct[]=[];
       const querySnapshot = await getDocs(collection(db, "products"));
       querySnapshot.forEach((doc) => {
-        products.push(doc.data() as IProduct)
+		  const data = doc.data()
+		  data.id = doc.id
+        products.push(data as IProduct)
       });
 	  console.log(products)
 	  dispatch({type: reducerActions.SET_PRODUCTS, payload: products})
@@ -57,8 +60,12 @@ function App() {
         <Route path={RoutingConstants.CHECKOUT} component={CheckoutPage} />
         <Route path={RoutingConstants.UPLOAD} component={UploadPage} />
         <Route
-          path={RoutingConstants.SINGLE_PRODUCT}
+          path={`${RoutingConstants.SINGLE_PRODUCT}/:id`}
           component={SingleProductPage}
+        />
+        <Route
+          path={`${RoutingConstants.FAVORITES}/:id`}
+          component={FavoritesPage}
         />
       </Switch>
     </div>

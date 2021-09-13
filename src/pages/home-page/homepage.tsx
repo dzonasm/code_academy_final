@@ -8,32 +8,16 @@ import { ProductGrid } from "../../components/product-grid/product-grid";
 import { Container } from "react-bootstrap";
 import { selectAllProducts } from "../../redux/selectors/selectors";
 import { v4 as uuid_v4 } from "uuid";
-import { IProduct } from "../../common/interfaces/product-interface";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../firebase";
+
 
 export const Homepage = () => {
-  const dispatch = useDispatch();
-
   const allProducts = useSelector(selectAllProducts);
 
-  useEffect(() => {
-    (async () => {
-		const products: IProduct[]=[];
-      const querySnapshot = await getDocs(collection(db, "products"));
-      querySnapshot.forEach((doc) => {
-        products.push(doc.data() as IProduct)
-      });
-	  console.log(products)
-	  dispatch({type: reducerActions.SET_PRODUCTS, payload: products})
-    })();
-  }, []);
-
   const pageProducts = allProducts.map(
-    ({ userId, photos, description, price, title }) => {
+    ({ userId, photos, description, price, title, id }) => {
       return (<div key={uuid_v4()} className=" d-flex justify-content-center">
         <Product
-          id={uuid_v4()}
+          id={id}
           userId={userId}
           description={description}
           title={title}

@@ -4,7 +4,7 @@ import {
   productsAction,
 } from "../types/types";
 
-const INITIAL_STATE = {
+const INITIAL_STATE : IProductsReducerState = {
   allProducts: [],
 };
 
@@ -22,7 +22,7 @@ const productsReducer = (
       return {
         ...state,
         allProducts: state.allProducts.filter((product) => {
-          return product !== action.payload[0];
+          return product.id !== action.payload[0].id;
         }),
       };
     default:

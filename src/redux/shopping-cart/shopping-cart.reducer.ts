@@ -25,6 +25,11 @@ const shoppingCartReducer = (
                 ...state, products: removeSingleItemFromCart(state.products, action.payload)
             }
         }
+        case reducerActions.CHECKOUT:{
+            return{
+                ...state, products: []
+            }
+        }
 
         default:
             return state

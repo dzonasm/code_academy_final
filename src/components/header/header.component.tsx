@@ -47,7 +47,7 @@ const Header = () => {
           className="justify-content-end"
           id="responsive-navbar-nav"
           >
-            <Link className="nav-link" to={RoutingConstants.FAVORITES}>
+            <Link className="nav-link" to={`${RoutingConstants.FAVORITES}/${user.uid}`}>
               Favorites
             </Link>
             <Link className="nav-link" to={RoutingConstants.UPLOAD}>
